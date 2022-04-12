@@ -1,0 +1,17 @@
+spring:
+  # 数据库环境
+  datasource:
+    driver-class-name: net.sf.log4jdbc.DriverSpy
+    url: jdbc:log4jdbc:mysql://47.242.250.165:3306/xianghong?useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: root
+    password:
+    hikari:
+      auto-commit: true
+      connection-timeout: 20000
+      max-lifetime: 1200000
+      idle-timeout: 300000
+      minimum-idle: 5
+      maximum-pool-size: 12
+  jackson:
+    time-zone: GMT+8
+

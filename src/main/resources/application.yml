@@ -1,0 +1,29 @@
+server:
+  port: ${server.port}
+
+spring:
+  datasource:
+    driver-class-name: net.sf.log4jdbc.DriverSpy
+    url: jdbc:log4jdbc:mysql://47.242.250.165:3306/xianghong?useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: root
+    hikari:
+      auto-commit: true
+      connection-timeout: 20000
+      max-lifetime: 1200000
+      idle-timeout: 300000
+      minimum-idle: 5
+      maximum-pool-size: 12
+  application:
+    name: xianghong
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  profiles:
+    active: ${spring_profiles_active}
+  jackson:
+    time-zone: GMT+8
+browser:
+  aegis:
+    sdk:
+      publicKey: no

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+    <!-- !!!! Driver Class Path !!!! -->
+    <!--<classPathEntry location="/home/mi/repository/mysql/mysql-connector-java/5.1.47/mysql-connector-java-5.1.47.jar"/>-->
+    <classPathEntry location="/Users/jinxianglu/.m2/repository/mysql/mysql-connector-java/5.1.10/mysql-connector-java-5.1.10.jar"/>
+
+    <context id="context" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="false"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!-- !!!! Database Configurations !!!! -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://47.242.250.165:3306/xianghong"
+                        userId="root" password=""/>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- !!!! Model Configurations !!!! -->
+        <javaModelGenerator targetPackage="com.xianghong.life.entity" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- !!!! Mapper XML Configurations !!!! -->
+        <sqlMapGenerator targetPackage="com.xianghong.life.mapper" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- !!!! Mapper Interface Configurations !!!! -->
+        <javaClientGenerator targetPackage="com.xianghong.life.mapper" targetProject="src/main/java"
+                             type="XMLMAPPER">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!--!!!! Table Configurations !!!!-->
+
+        <!--<table tableName="newhome_hot_item" domainObjectName="HotItem">-->
+        <!--<property name="ignoreQualifiersAtRuntime" value="true"/>-->
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--&lt;!&ndash;<columnOverride column="type" javaType="Integer"/>&ndash;&gt;-->
+        <!--</table>-->
+        <!--<table tableName="operate_log" domainObjectName="OperateLog">-->
+        <!--<property name="ignoreQualifiersAtRuntime" value="true"/>-->
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--&lt;!&ndash;<columnOverride column="type" javaType="Integer"/>&ndash;&gt;-->
+        <!--<columnOverride column="status" javaType="Integer"/>-->
+        <!--<columnOverride column="log_type" javaType="Integer"/>-->
+        <!--</table>-->
+        <!--<table tableName="summary_result" domainObjectName="SummaryResult">-->
+        <!--<property name="ignoreQualifiersAtRuntime" value="true"/>-->
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--<columnOverride column="summary_type" javaType="Integer"/>-->
+        <!--</table>-->
+        <!--<table tableName="admin_user" domainObjectName="AdminUser">-->
+        <!--<property name="ignoreQualifiersAtRuntime" value="true"/>-->
+        <!--<property name="modelOnly" value="false"/>-->
+        <!--</table>-->
+        <!--        <table tableName="official_message" domainObjectName="OfficialMessage">-->
+        <!--            <property name="ignoreQualifiersAtRuntime" value="true"/>-->
+        <!--            <property name="modelOnly" value="false"/>-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--            <columnOverride column="target_type" javaType="Integer"/>-->
+        <!--            <columnOverride column="message_type" javaType="Integer"/>-->
+        <!--            <columnOverride column="content_type" javaType="Integer"/>-->
+        <!--            <columnOverride column="status" javaType="Integer"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="static_resource" domainObjectName="StaticResource">-->
+        <!--            <property name="ignoreQualifiersAtRuntime" value="true"/>-->
+        <!--            <property name="modelOnly" value="false"/>-->
+        <!--            <columnOverride column="resource_type" javaType="Integer"/>-->
+        <!--        </table>-->
+        <!--<table tableName="content_new_era" domainObjectName="ContentNewEra">
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <property name="modelOnly" value="false"/>
+            <columnOverride column="del_flag" javaType="Integer"/>
+        </table>
+
+        <table tableName="operational_banner" domainObjectName="OperationalBanner">
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <property name="modelOnly" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+            <columnOverride column="del_flag" javaType="Integer"/>
+            <columnOverride column="activity_status" javaType="Integer"/>
+            <columnOverride column="activity_order" javaType="Integer"/>
+        </table>
+        <table tableName="operational_banner_item" domainObjectName="OperationalBannerItem">
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <property name="modelOnly" value="false"/>
+        </table>-->
+        <table tableName="user_info" domainObjectName="UserInfoEntity">
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <property name="modelOnly" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="cash_gift" domainObjectName="CashGiftEntity">
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <property name="modelOnly" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="content" domainObjectName="PublishContentEntity">
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <property name="modelOnly" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="comment" domainObjectName="UserCommentEntity">
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <property name="modelOnly" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+    </context>
+</generatorConfiguration>
