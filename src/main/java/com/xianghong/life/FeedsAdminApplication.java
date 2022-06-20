@@ -1,16 +1,16 @@
 package com.xianghong.life;
 
-import com.xianghong.life.service.UserInfoService;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+
+@SpringBootApplication
+@EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)
 public class FeedsAdminApplication {
 
     public static void main(String[] args) {
-
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationTest.xml");
-        UserInfoService userInfoService = context.getBean(UserInfoService.class);
-        System.out.println(userInfoService);
-        userInfoService.getUserInfoById(1);
+        SpringApplication.run(FeedsAdminApplication.class, args);
     }
 
 }

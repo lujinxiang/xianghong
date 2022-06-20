@@ -2,9 +2,9 @@ spring:
   # 数据库环境
   datasource:
     driver-class-name: net.sf.log4jdbc.DriverSpy
-    url: jdbc:log4jdbc:mysql://47.242.250.165:3306/xianghong?useUnicode=true&characterEncoding=utf-8&useSSL=true
+    url: jdbc:log4jdbc:mysql://192.168.1.5:3306/xianghong?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
-    password:
+    password: 000658ljx
     hikari:
       auto-commit: true
       connection-timeout: 20000

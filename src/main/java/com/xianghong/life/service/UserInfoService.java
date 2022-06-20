@@ -7,7 +7,10 @@ import com.xianghong.life.dto.userinfo.UserInfoResponse;
 import com.xianghong.life.entity.UserInfoEntity;
 import com.xianghong.life.utils.UserInfoConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Collections;
@@ -58,5 +61,17 @@ public class UserInfoService {
             return null;
         }
         return UserInfoConvertUtil.convert2UserInfoResponse(userInfoById.get());
+    }
+
+
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
+    public void scheduleOpRecomLevelSummary() {
+        System.out.print("start");
+        for (int i = 1; i <= 2; i++) {
+            if (i == 2) {
+                throw new RuntimeException("aop error");
+            }
+        }
+        System.out.print("end");
     }
 }
