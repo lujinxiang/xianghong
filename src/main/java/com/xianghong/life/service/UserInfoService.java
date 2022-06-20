@@ -30,6 +30,8 @@ public class UserInfoService {
      * @param request
      * @return
      */
+
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public int registerUser(RegisterUserInfoRequest request) {
         return userInfoDao.saveUserInfo(UserInfoConvertUtil.convert2UserInfo(request));
     }
@@ -63,15 +65,4 @@ public class UserInfoService {
         return UserInfoConvertUtil.convert2UserInfoResponse(userInfoById.get());
     }
 
-
-    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
-    public void scheduleOpRecomLevelSummary() {
-        System.out.print("start");
-        for (int i = 1; i <= 2; i++) {
-            if (i == 2) {
-                throw new RuntimeException("aop error");
-            }
-        }
-        System.out.print("end");
-    }
 }
