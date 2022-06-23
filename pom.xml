@@ -43,6 +43,23 @@
             <artifactId>jsp-api</artifactId>
             <version>2.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.8.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -269,31 +286,7 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.5</version>
-                <configuration>
-                    <failOnError>true</failOnError>
-                    <findbugsXmlOutput>true</findbugsXmlOutput>
-                    <xmlOutput>true</xmlOutput>
-                    <includeFilterFile>${basedir}/src/main/resources/findbugs-include.xml</includeFilterFile>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>failOnError</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                        <configuration>
-                            <effort>Max</effort>
-                            <threshold>High</threshold>
-                            <failOnError>true</failOnError>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -332,15 +325,15 @@
                                     <!--是否检查传递性依赖(间接依赖)-->
                                     <searchTransitive>true</searchTransitive>
                                     <excludes>
-                                        <exclude>log4j:log4j</exclude>
+                                  <!--     &lt;!&ndash; <exclude>log4j:log4j</exclude>&ndash;&gt;
                                         <exclude>org.slf4j:slf4j-log4j12</exclude>
                                         <exclude>commons-logging:commons-logging</exclude>
-                                        <exclude>scribe-log4j</exclude>
-                                        <exclude>ch.qos.logback</exclude>
+                                        &lt;!&ndash;<exclude>scribe-log4j</exclude>&ndash;&gt;
+                                        &lt;!&ndash;<exclude>ch.qos.logback</exclude>&ndash;&gt;
                                         <exclude>slf4j-jkd14</exclude>
                                         <exclude>slf4j-simple</exclude>
                                         <exclude>slf4j-nop</exclude>
-                                        <exclude>slf4j-jcl</exclude>
+                                        <exclude>slf4j-jcl</exclude>-->
                                     </excludes>
                                     <message>must use log4j2, exclude log4j commons-logging logback</message>
                                 </bannedDependencies>

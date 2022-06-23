@@ -14,4 +14,3 @@ spring:
       maximum-pool-size: 12
   jackson:
     time-zone: GMT+8
-

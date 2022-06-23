@@ -5,19 +5,23 @@ import com.xianghong.life.dto.userinfo.EditUserInfoRequest;
 import com.xianghong.life.dto.userinfo.RegisterUserInfoRequest;
 import com.xianghong.life.dto.userinfo.UserInfoResponse;
 import com.xianghong.life.entity.UserInfoEntity;
+import com.xianghong.life.redis.RedisUtils;
 import com.xianghong.life.utils.UserInfoConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import redis.clients.jedis.Jedis;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * @author jinxianglu
+ */
 @Service
 public class UserInfoService {
 
@@ -33,7 +37,11 @@ public class UserInfoService {
 
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public int registerUser(RegisterUserInfoRequest request) {
-        return userInfoDao.saveUserInfo(UserInfoConvertUtil.convert2UserInfo(request));
+        int res = userInfoDao.saveUserInfo(UserInfoConvertUtil.convert2UserInfo(request));
+        Jedis jedis = RedisUtils.getJedis();
+        jedis.set(request.getUserName(), request.getPassword());
+        RedisUtils.releaseJedisConnector(jedis);
+        return res;
     }
 
     /**
@@ -51,7 +59,8 @@ public class UserInfoService {
      * 更新用户信息
      */
     public int updateUserInfo(EditUserInfoRequest editUserInfoRequest) {
-        return userInfoDao.updateUserInfo(UserInfoConvertUtil.convert2UserInfo(editUserInfoRequest));
+        int res = userInfoDao.updateUserInfo(UserInfoConvertUtil.convert2UserInfo(editUserInfoRequest));
+        return res;
     }
 
     /**

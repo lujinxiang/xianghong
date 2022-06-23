@@ -28,3 +28,14 @@ browser:
   aegis:
     sdk:
       publicKey: no
+
+redis:
+  host: 192.168.1.5
+  port: 6379
+  password: 000658ljx
+  timeout: 10000
+  max-active: 100
+  max-idle: 20
+  min-idle: 5
+  max-total: 4
+
