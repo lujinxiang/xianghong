@@ -1,4 +1,4 @@
-package com.xianghong.life.advise;
+package com.xianghong.life.constants;
 
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.converter.HttpMessageNotReadableException;

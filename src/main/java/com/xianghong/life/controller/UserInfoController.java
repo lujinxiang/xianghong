@@ -1,7 +1,8 @@
 package com.xianghong.life.controller;
 
-import com.xianghong.life.advise.CommonException;
-import com.xianghong.life.advise.CommonResponse;
+import com.xianghong.life.annotation.SelfLog;
+import com.xianghong.life.constants.CommonException;
+import com.xianghong.life.constants.CommonResponse;
 import com.xianghong.life.dto.userinfo.RegisterUserInfoRequest;
 import com.xianghong.life.dto.userinfo.UserInfoResponse;
 import com.xianghong.life.service.UserInfoService;
@@ -50,6 +51,7 @@ public class UserInfoController {
 
     @ApiOperation(value = "根据姓名获取用户信息", notes = "根据姓名获取用户信息")
     @GetMapping("/username")
+    @SelfLog("jinxianglu")
     public CommonResponse findUserInfoByUserName(String username) {
         log.info("findUserInfoByName start username is:{}", username);
         List<UserInfoResponse> userByName = userInfoService.findUserByName(username);

@@ -1,4 +1,4 @@
-package com.xianghong.life.advise;
+package com.xianghong.life.constants;
 
 
 import io.swagger.annotations.ApiModel;
@@ -37,7 +37,7 @@ public class CommonResponse<T> {
     @ApiModelProperty(value = "响应状态码")
     private int status;
     @ApiModelProperty(value = "响应状态吗(内部定义)")
-    private int code = com.xianghong.life.advise.CommonCode.SUCCESS_CODE;
+    private int code = CommonCode.SUCCESS_CODE;
     @ApiModelProperty(value = "错误信息")
     private String message;
     @ApiModelProperty(value = "请求路径")
@@ -66,7 +66,7 @@ public class CommonResponse<T> {
             commonResponse.status = HttpStatus.OK.value();
         } else {
             commonResponse.status = HttpStatus.INTERNAL_SERVER_ERROR.value();
-            commonResponse.code = com.xianghong.life.advise.ErrorCode.SYSTEM_ERROR;
+            commonResponse.code = ErrorCode.SYSTEM_ERROR;
         }
         return commonResponse;
     }

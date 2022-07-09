@@ -1,4 +1,4 @@
-package com.xianghong.life.advise;
+package com.xianghong.life.constants;
 
 /**
  * @author lujinxiang

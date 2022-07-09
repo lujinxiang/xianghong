@@ -1,4 +1,4 @@
-package com.xianghong.life.advise;
+package com.xianghong.life.constants;
 
 import lombok.Getter;
 import lombok.Setter;

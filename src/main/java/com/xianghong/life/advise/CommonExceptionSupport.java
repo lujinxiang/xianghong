@@ -1,6 +1,10 @@
 package com.xianghong.life.advise;
 
 
+import com.xianghong.life.constants.CommonCode;
+import com.xianghong.life.constants.CommonException;
+import com.xianghong.life.constants.CommonResponse;
+import com.xianghong.life.constants.ErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -31,12 +35,12 @@ public class CommonExceptionSupport {
     @ResponseBody
     public CommonResponse handleException(HttpServletRequest request, Throwable e) {
         logAndMetric(request, "CMS异常未知", "cmsError.unknown", e, true);
-        return errorResponse(request.getServletPath(), HttpStatus.INTERNAL_SERVER_ERROR, com.xianghong.life.advise.ErrorCode.SYSTEM_ERROR, "InternalServerError");
+        return errorResponse(request.getServletPath(), HttpStatus.INTERNAL_SERVER_ERROR, ErrorCode.SYSTEM_ERROR, "InternalServerError");
     }
 
-    @ExceptionHandler({com.xianghong.life.advise.CommonException.class})
+    @ExceptionHandler({CommonException.class})
     @ResponseBody
-    public CommonResponse handleException(HttpServletRequest request, com.xianghong.life.advise.CommonException e) {
+    public CommonResponse handleException(HttpServletRequest request, CommonException e) {
         logAndMetric(request, "CMS异常已知", "cmsError", e, false);
         return errorResponse(request.getServletPath(), e.getHttpStatus(), e.getCode(), e.getMessage());
     }
@@ -48,7 +52,7 @@ public class CommonExceptionSupport {
     @ResponseBody
     public CommonResponse handleException(HttpServletRequest request, MissingServletRequestParameterException e) {
         logAndMetric(request, "CMS异常已知", "cmsError", e, false);
-        return errorResponse(request.getServletPath(), HttpStatus.BAD_REQUEST, com.xianghong.life.advise.ErrorCode.ARGUMENT_NOT_VALID, e.getMessage());
+        return errorResponse(request.getServletPath(), HttpStatus.BAD_REQUEST, ErrorCode.ARGUMENT_NOT_VALID, e.getMessage());
     }
 
     /**
@@ -58,7 +62,7 @@ public class CommonExceptionSupport {
     @ResponseBody
     public CommonResponse handleException(HttpServletRequest request, BindException e) {
         logAndMetric(request, "CMS异常已知", "cmsError", e, false);
-        return errorResponse(request.getServletPath(), HttpStatus.BAD_REQUEST, com.xianghong.life.advise.ErrorCode.ARGUMENT_NOT_VALID, "BindValid", e.getBindingResult());
+        return errorResponse(request.getServletPath(), HttpStatus.BAD_REQUEST, ErrorCode.ARGUMENT_NOT_VALID, "BindValid", e.getBindingResult());
     }
 
     /**
@@ -68,7 +72,7 @@ public class CommonExceptionSupport {
     @ResponseBody
     public CommonResponse handleException(HttpServletRequest request, MethodArgumentNotValidException e) {
         logAndMetric(request, "CMS异常已知", "cmsError", e, false);
-        return errorResponse(request.getServletPath(), HttpStatus.BAD_REQUEST, com.xianghong.life.advise.ErrorCode.ARGUMENT_NOT_VALID, "ArgumentNotValid", e.getBindingResult());
+        return errorResponse(request.getServletPath(), HttpStatus.BAD_REQUEST, ErrorCode.ARGUMENT_NOT_VALID, "ArgumentNotValid", e.getBindingResult());
     }
 
 
@@ -85,7 +89,7 @@ public class CommonExceptionSupport {
     private CommonResponse errorResponse(String servletPath, HttpStatus httpStatus, int errorCode, String message, Errors errors) {
         CommonResponse.ErrorResponse errorResponse = CommonResponse.ErrorResponse.error(servletPath, httpStatus.value(), errorCode, message, errors);
         if (CommonCode.SUCCESS_CODE == errorResponse.getCode()) {
-            errorResponse.setCode(com.xianghong.life.advise.ErrorCode.SYSTEM_ERROR);
+            errorResponse.setCode(ErrorCode.SYSTEM_ERROR);
         }
         return errorResponse;
     }
