@@ -56,7 +56,7 @@ public class UserInfoController {
         if (CollectionUtils.isEmpty(userByName)) {
             throw new CommonException("没有查询到任何用户信息");
         }
-        return CommonResponse.ok(JsonUtil.toJsonString(userByName));
+        return CommonResponse.ok(userByName);
     }
 
 }
